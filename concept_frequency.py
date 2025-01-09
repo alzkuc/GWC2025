@@ -62,7 +62,7 @@ for gloss, values in gloss_data.items():
 path = Path(__file__).parent / "concept-frequency.tsv"
 
 with UnicodeWriter(path, delimiter='\t') as writer:
-    writer.writerow(['CONCEPTICON GLOSS', 'FREQUENCY', 'PRESENT', 'ABSENT'])
+    writer.writerow(['CONCEPTICON_GLOSS', 'FREQUENCY', 'PRESENT', 'ABSENT'])
     for row in sorted(output_data, key=lambda x: x[1], reverse=True):
         writer.writerow(row)
 
