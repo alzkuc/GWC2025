@@ -13,7 +13,7 @@ from pathlib import Path
 
 concepticon = Concepticon("concepticon-data")
 
-swadesh = concepticon.conceptlists["Swadesh-1952-200"].concepts
+swadesh = concepticon.conceptlists["Swadesh-1955-100"].concepts
 nouns = []
 for concept in swadesh.values():
     if concepticon.conceptsets[concept.concepticon_id].ontological_category == "Person/Thing":

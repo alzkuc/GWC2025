@@ -36,3 +36,19 @@ $ python concept_frequency.tsv
 
 Results will be written to file `concept-frequency.tsv`.
 
+Then, type:
+
+```
+$ python swadesh_overlap.py
+```
+
+This will create output printed to the terminal and also create a barplot (`swadesh-barcharts.pdf`) and a heatmap (`swadesh-heatmap.pdf`).
+
+To create the wordcloud shown in the study, type.
+
+```
+$ python recurring_concepts.py
+```.
+
+This will create the file `wordcloud.pdf`.
+
