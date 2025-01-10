@@ -4,6 +4,8 @@ Note: For this script, one must first download and save the Swadesh_POStagged.ts
 """
 
 from pyconcepticon import Concepticon
+from matplotlib import pyplot as plt
+import numpy as np
 
 concepticon = Concepticon("concepticon-data")
 
@@ -47,3 +49,28 @@ for cl, concepts in common_concepts.items():
     for concept in concepts:
         print('* ' + concept)
     print("")
+
+
+common_counts = [len(common_concepts[clist]) for clist in conceptlists]
+
+sorted_data = sorted(zip(common_counts, conceptlists), key=lambda x: x[0], reverse=True)
+sorted_counts, sorted_names = zip(*sorted_data)
+norm = plt.Normalize(min(sorted_counts), max(sorted_counts))
+cmap = plt.cm.Oranges
+plt.clf() # clear figures
+plt.figure(figsize=(10, 6))
+bars = plt.bar(sorted_names, sorted_counts, color=cmap(norm(sorted_counts)))
+
+for bar, count in zip(bars, sorted_counts):
+    plt.text(
+        bar.get_x() + bar.get_width() / 2,
+        bar.get_height(),                  #Height
+        str(count),                        #Displaying the count
+        ha='center',                       
+        va='bottom',                       
+        fontsize=10                        
+    )
+
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig("swadesh-barcharts.pdf")
