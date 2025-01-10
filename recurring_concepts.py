@@ -1,4 +1,6 @@
-#This Python script accesses the previously created concept_frequency.py file and extracts concepts that appear in at least 15, 16, or all 17 out of 17 datasets, then prints them.import pandas as pd 
+"""
+This Python script accesses the previously created concept_frequency.py file and extracts concepts that appear in at least 15, 16, or all 17 out of 17 datasets, then prints them.
+"""
 
 from csvw.dsv import UnicodeDictReader
 from pathlib import Path
