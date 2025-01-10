@@ -4,6 +4,8 @@ This Python script accesses the previously created concept_frequency.py file and
 
 from csvw.dsv import UnicodeDictReader
 from pathlib import Path
+from wordcloud import WordCloud
+from matplotlib import pyplot as plt
 
 def get_list(data, freq):
     return [row["CONCEPTICON_GLOSS"] for row in data if int(row["FREQUENCY"]) >= freq]
@@ -22,3 +24,14 @@ for a, b in zip([15, 16, 17], [list_15, list_16, list_17]):
         print("* " + c)
     print("")
 
+word_frequencies = {
+        row["CONCEPTICON_GLOSS"]: int(row["FREQUENCY"]) for row in data}
+
+
+
+wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Oranges').generate_from_frequencies(word_frequencies)
+
+plt.figure(figsize=(10, 6))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.savefig("wordcloud.pdf")

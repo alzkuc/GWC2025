@@ -5,7 +5,11 @@ Note: For this script, one must first download and save the Swadesh_POStagged.ts
 
 from pyconcepticon import Concepticon
 from matplotlib import pyplot as plt
+from matplotlib.colors import ListedColormap
+import seaborn as sns
+import pandas as pd
 import numpy as np
+from pathlib import Path
 
 concepticon = Concepticon("concepticon-data")
 
@@ -16,25 +20,8 @@ for concept in swadesh.values():
         nouns += [concept.concepticon_gloss]
 
 #Specific comparison: which Swadesh concepts and how many are present in which dataset
-conceptlists = [
-    'Hwang-2021-60',
-    'Snodgrass-1980-260',
-    'MorenoMartinez-2012-360',
-    "Tsaparina-2011-260",
-    "Dunabeitia-2018-750",
-    "vanDort-2007-50",
-    "Nishimoto-2005-359",
-    "Boukadi-2015-348",
-    "Shao-2016-327",
-    "Bangalore-2022-180",
-    "Zhong-2024-1286",
-    "Raman-2013-260",
-    "Dimitropoulou-2009-260",
-    "Rogic-2013-346",
-    "Liu-2011-435",
-    "Ramanujan-2019-158",
-    "Dunabeitia-2022-500"
-]
+with open(Path(__file__).parent / "conceptlists.tsv") as f:
+    conceptlists = [row.strip() for row in f]
 
 common_concepts = {}
 
@@ -74,3 +61,27 @@ for bar, count in zip(bars, sorted_counts):
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.savefig("swadesh-barcharts.pdf")
+
+plt.clf()
+plt.figure(figsize=(15, 9)) 
+cmap = ListedColormap(['#fca663', '#de5b12'])
+
+# create dataframe data for heatmap (with pandas)
+heatmap_data = pd.DataFrame(0, index=conceptlists, columns=nouns)
+for dataset, nouns in common_concepts.items():
+    for noun in nouns:
+        heatmap_data.at[dataset, noun] = 1
+
+
+heatmap = sns.heatmap(heatmap_data, cmap=cmap, cbar=True, linewidths=0.5, vmin=0.0, vmax=1.0, square=True,  cbar_kws={"orientation": "vertical", "shrink": 0.25})
+
+colorbar = heatmap.collections[0].colorbar
+colorbar.set_ticks([0, 1])
+colorbar.set_ticklabels(['Absent', 'Present']) 
+
+plt.title('')
+plt.xlabel('')
+plt.ylabel('')
+
+plt.tight_layout()
+plt.savefig("swadesh-heatmap.pdf")

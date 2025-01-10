@@ -10,25 +10,9 @@ from csvw.dsv import UnicodeWriter
 from collections import defaultdict
 
 # list of concepts to be queried
-conceptlists = [
-    'Hwang-2021-60',
-    'Snodgrass-1980-260',
-    'MorenoMartinez-2012-360',
-    "Tsaparina-2011-260",
-    "Dunabeitia-2018-750",
-    "vanDort-2007-50",
-    "Nishimoto-2005-359",
-    "Boukadi-2015-348",
-    "Shao-2016-327",
-    "Bangalore-2022-180",
-    "Zhong-2024-1286",
-    "Raman-2013-260",
-    "Dimitropoulou-2009-260",
-    "Rogic-2013-346",
-    "Liu-2011-435",
-    "Ramanujan-2019-158",
-    "Dunabeitia-2022-500"
-]
+with open(Path(__file__).parent / "conceptlists.tsv") as f:
+    conceptlists = [row.strip() for row in f]
+
 
 concepticon = Concepticon("concepticon-data") # stores the data
 
