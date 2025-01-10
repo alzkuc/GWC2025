@@ -1,4 +1,8 @@
-# Data and Code Accompanying the Study "Everybody Likes to Sleep: A Computer-Assisted Comparison of Object Naming Data from 30 Languages" (Kučerová & List, forthcoming)
+# Data and Code Accompanying the Study "Everybody Likes to Sleep: A Computer-Assisted Comparison of Object Naming Data from 30 Languages"
+
+Data and code presented here accompany the following study:
+
+>  Kučerová, Alžběta and List, Johann-Mattis (2025): Everybody Likes to Sleep: A Computer-Assisted Comparison of Object Naming Data from 30 Languages. Proceedings of the Global WordNet Conference 2025. 
 
 ## Installation
 
