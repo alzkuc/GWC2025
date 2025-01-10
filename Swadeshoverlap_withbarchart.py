@@ -1,6 +1,6 @@
 #This Python script calculates and presents the overlap of concepts within the 17 datasets with Swadesh 1955. 
-#Note: For this script, one must first download and save the Swadesh_POStagged.tsv file (Under: Additional Data).
-
+#Note1: For this script, one must first download and save the Swadesh_POStagged.tsv file (Under: Additional Data).
+#Note2: This version also creates the barchart from our study.
 import pandas as pd
 
 file_path = 'PATH/TO/Swadesh_POStagged.tsv'
