@@ -9,6 +9,7 @@ from matplotlib.colors import ListedColormap
 import seaborn as sns
 import pandas as pd
 import numpy as np
+import matplotlib.patches as mpatches
 from pathlib import Path
 
 concepticon = Concepticon("concepticon-data")
@@ -73,11 +74,11 @@ for dataset, nouns in common_concepts.items():
         heatmap_data.at[dataset, noun] = 1
 
 
-heatmap = sns.heatmap(heatmap_data, cmap=cmap, cbar=True, linewidths=0.5, vmin=0.0, vmax=1.0, square=True,  cbar_kws={"orientation": "vertical", "shrink": 0.25})
+heatmap = sns.heatmap(heatmap_data, cmap=cmap, cbar=False, linewidths=0.5, vmin=0.0, vmax=1.0, square=True,  cbar_kws={"orientation": "vertical", "shrink": 0.25})
 
-colorbar = heatmap.collections[0].colorbar
-colorbar.set_ticks([0, 1])
-colorbar.set_ticklabels(['Absent', 'Present']) 
+absent_patch = mpatches.Patch(color=cmap(1), label='Present')
+present_patch = mpatches.Patch(color=cmap(0), label='Absent')
+plt.legend(handles=[absent_patch, present_patch], loc='lower left', bbox_to_anchor=(0.0, -0.5), ncol=1, frameon=False)
 
 plt.title('')
 plt.xlabel('')
