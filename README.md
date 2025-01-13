@@ -31,7 +31,7 @@ $ pip install -r requirements.txt
 Concept counts can be done with the script `concept_frequency.py`:
 
 ```
-$ python concept_frequency.tsv
+$ python concept_frequency.py
 ```
 
 Results will be written to file `concept-frequency.tsv`.
