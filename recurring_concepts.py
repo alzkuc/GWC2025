@@ -25,7 +25,8 @@ for a, b in zip([15, 16, 17], [list_15, list_16, list_17]):
     print("")
 
 word_frequencies = {
-        row["CONCEPTICON_GLOSS"]: int(row["FREQUENCY"]) for row in data}
+        row["CONCEPTICON_GLOSS"]: int(row["FREQUENCY"]) for row in data
+        if int (row["FREQUENCY"]) in [15, 16, 17]}
 
 
 
