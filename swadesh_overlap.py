@@ -26,9 +26,9 @@ with open(Path(__file__).parent / "conceptlists.tsv") as f:
 common_concepts = {}
 
 for conceptlist in conceptlists:
-    concepts = [concept.concepticon_gloss for concept in
+    concepts = {concept.concepticon_gloss for concept in
                 concepticon.conceptlists[conceptlist].concepts.values() if
-                concept.concepticon_gloss in nouns]
+                concept.concepticon_gloss in nouns}
     common_concepts[conceptlist] = sorted(concepts)
 
 for cl, concepts in common_concepts.items():
